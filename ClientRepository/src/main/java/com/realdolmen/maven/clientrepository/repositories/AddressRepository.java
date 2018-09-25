@@ -1,26 +1,55 @@
 package com.realdolmen.maven.clientrepository.repositories;
 
-import com.realdolmen.maven.clientrepository.domain.Address;
+import com.realdolmen.maven.clientrepository.domain.*;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 
 public class AddressRepository extends AbstractRepository<Address, Integer>{
 
-    //private static final String TABLE;
+    public static final String TABLE_NAME = "address";
+    public static final String KEY = "id";
+    public static final String TYPE = "type";
+    public static final String STREET = "street";
+    public static final String NUMBER = "number";
+    public static final String BOX = "box";
+    public static final String POSTAL = "postal_code";
+    public static final String KLANT = "klant";
+    
     
     public AddressRepository() {
-        super("address", "");
+        super(TABLE_NAME,KEY);
     }
     
     protected AddressRepository(String url){
-        super("","","");
+        super(TABLE_NAME,KEY,url);
     }
 
     //TODO implement
     @Override
     public Address createObject(ResultSet resultSet) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Address address = null;
+        try
+        {
+            address = new Address();
+            address.setTypeAddress(resultSet.getString(TYPE));
+            address.setStreet(resultSet.getString(STREET));
+            address.setNumber(resultSet.getInt(NUMBER));
+            address.setBox(resultSet.getString(BOX));
+            PostalCode postalcode = new PostalCode();
+            postalcode.setNumber(resultSet.getInt(POSTAL));
+            address.setPostalCode(postalcode);
+            Klant klant = new Klant();
+            klant.setNumber(resultSet.getInt(KLANT));
+            address.setKlant(klant);
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(FirmRepository.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return address;
     }
 
     //TODO implement
@@ -32,8 +61,19 @@ public class AddressRepository extends AbstractRepository<Address, Integer>{
     //TODO implement
     @Override
     public String getValuesString(Address c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(c.getKlant() instanceof Person)
+        {
+            return "("+null+","+c.getKlant().getNumber()+","+null+")";
+        }
+        else if (c.getKlant() instanceof Firm)
+        {
+            return "("+null+","+c.getKlant().getNumber()+","+null+")";
+        }
+        return "";
+            
+    
     }
+    
     
     
     

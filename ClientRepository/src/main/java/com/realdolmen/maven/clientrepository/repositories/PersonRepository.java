@@ -38,6 +38,7 @@ public class PersonRepository extends AbstractRepository<Person, Integer> {
     public Person createObject(ResultSet resultSet) {
         Person person = new Person();
         try {
+            person = new Person();
             person.setNumber(resultSet.getInt(KEY));
             person.setName(resultSet.getString(NAME));
             person.setFirstName(FIRST_NAME);
