@@ -41,7 +41,7 @@ public class PersonService {
             Address address = person.getAddress().get(0);
             person = personRepository.insertItem(person);
             address.setKlant(person);
-            addressService.insertAddress();
+           // addressService.insertAddress();
         }
         return person;
     }

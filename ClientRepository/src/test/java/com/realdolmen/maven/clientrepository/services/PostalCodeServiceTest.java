@@ -12,6 +12,8 @@ import static org.junit.Assert.*;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 import com.realdolmen.maven.clientrepository.repositories.PostalCodeRepository;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.Before;
 import org.mockito.Mock;
 import static org.mockito.Mockito.*;
@@ -53,8 +55,25 @@ public class PostalCodeServiceTest {
     /**
      * Test of findAllPostalCodesFromTheNine method, of class PostalCodeService.
      */
+        private void createPostals(List<PostalCode> listToFill){
+            for (int i = 1; i < 10; i++) {
+                PostalCode postalCode = new PostalCode();
+                postalCode.setNumber(i*1000);
+                listToFill.add(postalCode);
+            }
+    }
     @Test
     public void testFindAllPostalCodesFromTheNine() throws Exception {
+                // init test data
+        List<PostalCode> postalCodes = new ArrayList<>();
+        createPostals(postalCodes);
+        when(postalCodeRepository.findAll()).thenReturn(postalCodes);
+        // do the actual test
+        List<PostalCode> result = postalCodeService.findAllPostalCodesFromTheNine();
+        // verify the result
+        assertNotEquals(postalCodes, result);
+        assertEquals(9000, result.get(0).getNumber());
+        verify(postalCodeRepository,times(1)).findAll();
     }
 
     /**
