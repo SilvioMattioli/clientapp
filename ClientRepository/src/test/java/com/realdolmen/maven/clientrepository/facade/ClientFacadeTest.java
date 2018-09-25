@@ -5,18 +5,29 @@
  */
 package com.realdolmen.maven.clientrepository.facade;
 
+import com.realdolmen.maven.clientrepository.service.FirmService;
+import com.realdolmen.maven.clientrepository.service.PersonService;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.runner.RunWith;
+import org.mockito.runners.MockitoJUnitRunner;
 
 /**
  *
  * @author SDOAX36
  */
+@RunWith(MockitoJUnitRunner.class)
 public class ClientFacadeTest {
-    
-    public ClientFacadeTest() {
+    //object to test
+    private ClientFacade clientFacade;
+    //mocking
+    private PersonService personService;
+    private FirmService firmService;
+    @Before
+    public void init(){
+       // clientFacade = new ClientFacade(personService,firmService);
     }
-
     /**
      * Test of getAllClients method, of class ClientFacade.
      */

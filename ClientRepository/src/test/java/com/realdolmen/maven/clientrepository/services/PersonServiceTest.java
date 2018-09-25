@@ -53,6 +53,12 @@ public class PersonServiceTest {
 
     @Test
     public void insertPersonTest() throws Exception {
+        Person person = new Person();
+        person.setFirstName("silvio");
+        person.setName("mattioli");
+        person.setNumber(5);
+        personService.insertPerson(person);
+        verify(personRepository,times(1)).insertItem(person);
 
     }
 }
