@@ -22,19 +22,23 @@ public class PersonRepositoryTest {
         List<Person> persons = personRepository.findAll();
         assertFalse(persons.isEmpty());
     }
-//    @Test
-//    public void testInsertDeleteSucces() throws NoQueryPossibleException{  
-//        insert();
-//        delete();          
-//    }
-//    
-//    private void delete() throws NoQueryPossibleException{
-//        assertNull(personRepository.deleteItem(55));
-//    }
-//    private void insert() throws NoQueryPossibleException{
-//        Person person = new Person();
-//        person.setNumber(55);
-//        person.setFirstName("silvio");
-//        assertNull(personRepository.insertItem(person));
-//    }
+    @Test
+    public void testInsertDeleteSucces() throws NoQueryPossibleException{  
+        insert();
+                  
+    }
+
+    // id wordt auto genereerd
+    private void insert() throws NoQueryPossibleException{
+        Person person = new Person();
+        person.setName("mattioli");
+        person.setFirstName("silvio");
+        Person result = personRepository.insertItem(person);
+        assertNotNull(result);
+        delete(result.getNumber());
+    }
+        
+    private void delete(int id) throws NoQueryPossibleException{
+        assertNotNull(personRepository.deleteItem(id));
+    }
 }

@@ -52,12 +52,12 @@ public class PersonRepository extends AbstractRepository<Person, Integer> {
     //TODO implement
     @Override
     public String getColumnString() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "("+KEY+","+NAME+","+FIRST_NAME+")";
     }
 
     //TODO implement
     @Override
-    public String getValuesString(Person c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String getValuesString(Person person) {
+        return "("+person.getNumber()+",'"+person.getName()+"','"+person.getFirstName()+"')";
     }
 }
