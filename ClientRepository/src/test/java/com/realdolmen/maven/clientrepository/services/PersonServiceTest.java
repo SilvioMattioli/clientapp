@@ -3,13 +3,14 @@ package com.realdolmen.maven.clientrepository.services;
 import com.realdolmen.maven.clientrepository.domain.Person;
 import com.realdolmen.maven.clientrepository.exceptions.NoQueryPossibleException;
 import com.realdolmen.maven.clientrepository.repositories.PersonRepository;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 import org.mockito.runners.MockitoJUnitRunner;
 
 /**
@@ -28,19 +29,28 @@ public class PersonServiceTest {
     public void init() {
         personService = new PersonService(personRepository);
     }
-
-    /**
-     * Test of findAll method, of class PersonService.
-     */
     @Test
-    public void testFindAll() throws Exception {
+    public void testFindAllSucces() throws NoQueryPossibleException {
+        List<Person> people = new ArrayList<>();
+        when(personRepository.findAll())
+                .thenReturn(people);
+        List<Person> result = personService.findAll();
+        
+        assertEquals(people, result);
+        verify(personRepository,times(1)).findAll();
+        
     }
 
-    /**
-     * Test of findById method, of class PersonService.
-     */
+   
     @Test
-    public void testFindById() throws Exception {
+    public void testFindByIdSucces() throws NoQueryPossibleException {
+        Person mens = new Person();
+        mens.setNumber(1);
+        when(personRepository.findById(mens.getNumber()))
+                .thenReturn(mens);
+        Person result = personService.findById(mens.getNumber());
+        assertEquals(mens, result);
+        verify(personRepository,times(1)).findById(1);
     }
 
     @Test
@@ -61,4 +71,5 @@ public class PersonServiceTest {
 //        verify(personRepository,times(1)).insertItem(person);
 //
 //    }
+
 }

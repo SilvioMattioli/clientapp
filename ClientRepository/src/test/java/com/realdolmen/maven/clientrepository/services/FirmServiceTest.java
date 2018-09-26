@@ -45,7 +45,7 @@ public class FirmServiceTest {
     public void testFindById() throws Exception {
     }
 
-    @Ignore
+    //@Ignore
     @Test
     public void insertFirmTestSuccess() throws Exception {
     }
