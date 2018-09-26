@@ -23,7 +23,8 @@ public class PersonRepositoryTest {
         List<Person> persons = personRepository.findAll();
         assertFalse(persons.isEmpty());
     }
-    @Ignore
+
+
     @Test
     public void testInsertDeleteSucces() throws NoQueryPossibleException{  
         insert();
@@ -35,12 +36,14 @@ public class PersonRepositoryTest {
         Person person = new Person();
         person.setName("mattioli");
         person.setFirstName("silvio");
-        Person result = personRepository.insertItem(person);
-        assertNotNull(result);
-        delete(result.getNumber());
+        int result = personRepository.insertItem(person);
+        assertTrue(result>0);
+        System.out.println("Retrieved with id "+result);
+        delete(result);
     }
         
     private void delete(int id) throws NoQueryPossibleException{
+        System.out.println("Delete with id "+id);
         assertNotNull(personRepository.deleteItem(id));
     }
 }

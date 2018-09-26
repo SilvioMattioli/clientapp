@@ -26,7 +26,7 @@ public class FirmService {
         return firmRepository.deleteItem(firm.getNumber());
     }
 
-    public Firm insertFirm(Firm firm) throws NoQueryPossibleException {
+    public int insertFirm(Firm firm) throws NoQueryPossibleException {
         return firmRepository.insertItem(firm);
     }
 

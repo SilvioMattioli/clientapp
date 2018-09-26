@@ -39,7 +39,8 @@ public class PersonService {
         if(person.getAddress().isEmpty()){
             //should not be empty
             Address address = person.getAddress().get(0);
-            person = personRepository.insertItem(person);
+            int i  = personRepository.insertItem(person);
+            person = findById(i);
             address.setKlant(person);
            // addressService.insertAddress();
         }
