@@ -5,8 +5,8 @@
  */
 package com.realdolmen.maven.clientrepository.facade;
 
-
-import com.realdolmen.maven.clientrepository.services.*;
+import com.realdolmen.maven.clientrepository.services.FirmService;
+import com.realdolmen.maven.clientrepository.services.PersonService;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
