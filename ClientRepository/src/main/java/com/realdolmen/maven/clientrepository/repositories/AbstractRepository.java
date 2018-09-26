@@ -82,18 +82,22 @@ public abstract class AbstractRepository<C, T> {
     }
 
     public C insertItem(C item) throws NoQueryPossibleException {
-        //Only tested for postalcode
-        try (Connection connection = createConnection()) {
-            String query = "INSERT INTO " + tableName + getColumnString()+" values " + getValuesString(item);
-            System.out.println(query);
-            PreparedStatement pstatement = connection.prepareStatement(query);
-            pstatement.executeUpdate();
-            return item;
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new NoQueryPossibleException("Insert " + tableName + " can not be excecuted ");
-        }
+    //Only tested for postalcode
+    try (Connection connection = createConnection()) {
+        String query = "INSERT INTO " + tableName + getColumnString()+" values " + getValuesString(item);
+        System.out.println(query);
+        PreparedStatement pstatement = connection.prepareStatement(query);
+        String max = "SELECT max("+idName+") AS max FROM "+tableName;
+        System.out.println(max);
+        pstatement = connection.prepareStatement(max);
+        ResultSet resultSet = pstatement.executeQuery();
+        item = findById((T) resultSet.getObject("max"));
+        return item;
+    } catch (Exception e) {
+        e.printStackTrace();
+        throw new NoQueryPossibleException("Insert " + tableName + " can not be excecuted ");
     }
+}
 
     //abstract method which returns an object created in the subclass but injected in the methods
     public abstract C createObject(ResultSet resultSet);

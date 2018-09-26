@@ -52,12 +52,12 @@ public class PersonRepository extends AbstractRepository<Person, Integer> {
     //TODO implement
     @Override
     public String getColumnString() {
-        return "("+KEY+","+NAME+","+FIRST_NAME+")";
+        return "("+NAME+","+FIRST_NAME+")";
     }
 
     //TODO implement
     @Override
     public String getValuesString(Person person) {
-        return "("+person.getNumber()+",'"+person.getName()+"','"+person.getFirstName()+"')";
+        return "('"+person.getName()+"','"+person.getFirstName()+"')";
     }
 }

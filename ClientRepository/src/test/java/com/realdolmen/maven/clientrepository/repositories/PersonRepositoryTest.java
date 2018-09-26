@@ -7,6 +7,7 @@ import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
+import org.junit.Ignore;
 
 public class PersonRepositoryTest {
     private static String URL = "jdbc:mysql://localhost:3306/clientdbtest?autoReconnect=true&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
@@ -22,6 +23,7 @@ public class PersonRepositoryTest {
         List<Person> persons = personRepository.findAll();
         assertFalse(persons.isEmpty());
     }
+    @Ignore
     @Test
     public void testInsertDeleteSucces() throws NoQueryPossibleException{  
         insert();
