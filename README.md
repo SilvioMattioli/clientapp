@@ -1,75 +1,37 @@
-package com.realdolmen.maven.clientrepository.facade;
+package com.realdolmen.maven.clientrepository.services;
 
-import com.realdolmen.maven.clientrepository.domain.Firm;
-import com.realdolmen.maven.clientrepository.domain.Klant;
-import com.realdolmen.maven.clientrepository.domain.Person;
+import com.realdolmen.maven.clientrepository.domain.Address;
 import com.realdolmen.maven.clientrepository.exceptions.NoQueryPossibleException;
-import com.realdolmen.maven.clientrepository.repositories.FirmRepository;
-import com.realdolmen.maven.clientrepository.repositories.PersonRepository;
-import com.realdolmen.maven.clientrepository.services.FirmService;
-import com.realdolmen.maven.clientrepository.services.PersonService;
+import com.realdolmen.maven.clientrepository.repositories.AddressRepository;
 import org.junit.Test;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import static org.mockito.Mockito.when;
-import org.mockito.runners.MockitoJUnitRunner;
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
-
+import org.mockito.runners.MockitoJUnitRunner;
 
 
 @RunWith(MockitoJUnitRunner.class)
-public class ClientFacadeTest {
+public class AddressServiceTest {
     
-     @Mock
-    private ClientFacade clientFacade;
-     
-     @Mock    
-    private FirmRepository firmRepository;
+    private AddressService addressService;
+
     
     @Mock
+    private AddressRepository addressRepository;
     
-    private PersonRepository personRepository;
-    
-    @Mock 
-    
-    private PersonService personService;
-    
-    @Mock 
-    
-    private FirmService firmService;
-     @Before
+    @Before
     public void init() {
-       
-         clientFacade = new ClientFacade();
+        addressService = new AddressService(addressService);
     }
-     public ClientFacadeTest() {
-    
-     }
-     /**
-     * Test of getAllClients method, of class ClientFacade.
-     */
-    @Test
-    public void testGetAllClients() {     
+   @Test
+    public void findAddressByIdTestSuccess() throws NoQueryPossibleException{
+        Address address = new Address();
+        when(addressRepository.findById(1)).thenReturn(address);
+        Address result = addressService.findAddressById(1);
+        assertEquals(address, result);
+        verify(addressRepository,times(1)).findById(1);
     }
-     /**
-     * Test of findClientById method, of class ClientFacade.
-     */
-    @Test
-    public void testFindClientById() throws NoQueryPossibleException {
-         //test van findClientById method, of class ClientFacade
-      Klant klant = null;
-      PersonRepository personRepository  = new PersonRepository();
-     
-       
-        Person person = new Person() ;
-        Firm firm = new Firm();
-        
-        when(personService.findById(1)).thenReturn(person);
-        when(firmService.findById(1)).thenReturn(firm);
-        
-        FirmRepository firmRepository = new FirmRepository();      
-     }
     
- }
+}
