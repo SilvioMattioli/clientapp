@@ -1,6 +1,10 @@
 package com.realdolmen.maven.clientrepository.repositories;
 
 import com.realdolmen.maven.clientrepository.domain.*;
+import com.realdolmen.maven.clientrepository.exceptions.NoQueryPossibleException;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -73,6 +77,24 @@ public class AddressRepository extends AbstractRepository<Address, Integer>{
             
     
     }
+
+    //findAddressesForPersonId(int id)
+//    public C findById(T id) throws NoQueryPossibleException {
+//        C object = null;
+//        try (Connection connection = createConnection()) {
+//            PreparedStatement pstatement = connection.prepareStatement("SELECT * FROM " + tableName + " WHERE " + idName + " = " + id);
+//            ResultSet resultSet = pstatement.executeQuery();
+//            if (resultSet.next()) {
+//                System.out.println("in resultset");
+//                object = createObject(resultSet);
+//            }
+//        } catch (Exception e) {
+//            throw new NoQueryPossibleException("Find by id " + tableName + " can not be excecuted");
+//        }
+//        return object;
+//    }
+
+    //findAddressesForFirmId(int id)
     
     
     

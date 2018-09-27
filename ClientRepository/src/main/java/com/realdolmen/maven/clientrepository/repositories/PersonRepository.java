@@ -36,17 +36,17 @@ public class PersonRepository extends AbstractRepository<Person, Integer> {
 
     @Override
     public Person createObject(ResultSet resultSet) {
-        Person person = new Person();
+
         try {
+            Person person = new Person();
             person = new Person();
             person.setNumber(resultSet.getInt(KEY));
             person.setName(resultSet.getString(NAME));
             person.setFirstName(FIRST_NAME);
             return person;
         } catch (SQLException ex) {
-            Logger.getLogger(PersonRepository.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
-        return person;
     }
 
     //TODO implement

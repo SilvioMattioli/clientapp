@@ -24,9 +24,11 @@ public class ClientFacade {
     public ClientFacade() {
         this.postalCodeService = new PostalCodeService(new PostalCodeRepository());
         //need implementation
-        this.addressService = new AddressService();
         this.personService = new PersonService(new PersonRepository());
         this.firmService = new FirmService(new FirmRepository());
+        //TODO
+//        this.addressService = new AddressService(new AddressRepository(),postalCodeService,firmService,personService);
+
     }
 
     public List<Klant> getAllClients(){
@@ -60,6 +62,12 @@ public class ClientFacade {
         }
         return klant;
     }
-    
+
+    //TODO
+    //findAddressesForClient(Klant klant)
+
+    //private findAddrPerson(Person person)
+
+    //private findAddrFirm(Firm firm)
     
 }
