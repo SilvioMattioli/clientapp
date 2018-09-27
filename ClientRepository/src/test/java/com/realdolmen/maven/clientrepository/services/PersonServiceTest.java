@@ -61,15 +61,17 @@ public class PersonServiceTest {
         verify(personRepository, times(1)).deleteItem(person.getNumber());
     }
 
-//    @Test
-//    public void insertPersonTest() throws Exception {
-//        Person person = new Person();
-//        person.setFirstName("silvio");
-//        person.setName("mattioli");
-//        person.setNumber(5);
-//        personService.insertPerson(person);
-//        verify(personRepository,times(1)).insertItem(person);
-//
-//    }
+    @Test
+    public void insertPersonTest() throws NoQueryPossibleException {
+        Person person = new Person();
+        person.setFirstName("silvio");
+        person.setName("mattioli");
+        when(personRepository.insertItem(person))
+                .thenReturn(1);
+        Person result = personService.insertPerson(person);
+        assertEquals(person, result);
+        verify(personRepository,times(1)).insertItem(person);
+
+    }
 
 }
