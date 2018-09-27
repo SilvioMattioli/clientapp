@@ -1,12 +1,13 @@
 package com.realdolmen.maven.clientrepository.domain;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Klant {
 
     
     protected int number;
-    private ArrayList<Address> address;
+    private List<Address> address;
     
     public Klant() {
 
@@ -28,11 +29,11 @@ public class Klant {
         this.number = Number;
     }
 
-    public ArrayList<Address> getAddress() {
+    public List<Address> getAddress() {
         return address;
     }
 
-    public void setAddress(ArrayList<Address> address) {
+    public void setAddress(List<Address> address) {
         this.address = address;
     }
 

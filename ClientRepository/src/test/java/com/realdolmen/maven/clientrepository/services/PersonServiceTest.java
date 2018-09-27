@@ -1,9 +1,12 @@
 package com.realdolmen.maven.clientrepository.services;
 
+import com.realdolmen.maven.clientrepository.domain.Address;
 import com.realdolmen.maven.clientrepository.domain.Person;
 import com.realdolmen.maven.clientrepository.exceptions.NoQueryPossibleException;
 import com.realdolmen.maven.clientrepository.repositories.PersonRepository;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -66,12 +69,16 @@ public class PersonServiceTest {
         Person person = new Person();
         person.setFirstName("silvio");
         person.setName("mattioli");
+
+        person.setAddress((Collections. singletonList(new Address())));
         when(personRepository.insertItem(person))
                 .thenReturn(1);
+        when(personRepository.findById(1)).thenReturn(person);
+
         Person result = personService.insertPerson(person);
+
         assertEquals(person, result);
         verify(personRepository,times(1)).insertItem(person);
-
     }
 
 }
